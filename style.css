@@ -320,7 +320,6 @@ a:active {
     transition: opacity 0.3s;
 }
 
-.tooltip:hover .tooltiptext,
 .tooltip:focus .tooltiptext {
     visibility: visible;
     opacity: 1;

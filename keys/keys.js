@@ -236,7 +236,7 @@ async function copyCode(codeId, button) {
     try {
         const content = document.getElementById(codeId).textContent;
         await navigator.clipboard.writeText(content);
-        
+
         const toast = document.getElementById('toast');
 
         const buttonRect = button.getBoundingClientRect();
