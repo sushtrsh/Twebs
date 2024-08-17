@@ -15,13 +15,13 @@ const games = {
         name: 'My Clone Army',
         appToken: '74ee0b5b-775e-4bee-974f-63e7f4d5bacb',
         promoId: 'fe693b26-b342-4159-8808-15e3ff7f8767',
-        interval: 121
+        interval: 20
     },
     4: {
         name: 'Train Miner',
         appToken: '82647f43-3f87-402d-88dd-09a90025313f',
         promoId: 'c4480ac7-e178-4973-8061-9ed5b2e17954',
-        interval: 121,
+        interval: 20,
     },
     5: {
         name: 'Merge Away',
