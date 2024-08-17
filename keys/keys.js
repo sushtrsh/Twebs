@@ -4,36 +4,42 @@ const games = {
         appToken: 'd28721be-fd2d-4b45-869e-9f253b554e50',
         promoId: '43e35910-c168-4634-ad4f-52fd764a843f',
         interval: 20,
+        eventCount: 13,
     },
     2: {
         name: 'Chain Cube 2048',
         appToken: 'd1690a07-3780-4068-810f-9b5bbf2931b2',
         promoId: 'b4170868-cef0-424f-8eb9-be0622e8e8e3',
-        interval: 20
+        interval: 20,
+        eventCount: 3,
     },
     3: {
         name: 'My Clone Army',
         appToken: '74ee0b5b-775e-4bee-974f-63e7f4d5bacb',
         promoId: 'fe693b26-b342-4159-8808-15e3ff7f8767',
-        interval: 20
+        interval: 120,
+        eventCount: 5,
     },
     4: {
         name: 'Train Miner',
         appToken: '82647f43-3f87-402d-88dd-09a90025313f',
         promoId: 'c4480ac7-e178-4973-8061-9ed5b2e17954',
-        interval: 20,
+        interval: 120,
+        eventCount: 1,
     },
     5: {
         name: 'Merge Away',
         appToken: '8d1cc2ad-e097-4b86-90ef-7a27e19fb833',
         promoId: 'dc128d28-c45b-411c-98ff-ac7726fbaea4',
         interval: 21,
+        eventCount: 7,
     },
     6 : {
         name: 'TwerkRace',
         appToken: '61308365-9d16-4040-8bb0-2f4a4c69074c',
         promoId: '61308365-9d16-4040-8bb0-2f4a4c69074c',
         interval: 20,
+        eventCount: 10,
     }
 };
 
@@ -160,15 +166,18 @@ const generateButton = document.getElementById('generateButton');
 const generateTimeValue = document.getElementById('generate-time-value');
 const generateProcessBlock = document.getElementById('process-generate-block');
 let keyBlock = document.getElementById('keys-block');
+const gameSelect = document.getElementById('game-names-select');
 
 async function generate() {
     generateButton.style.display = 'none';
-    const games = document.getElementById('game-names-select');
-    games.disabled = true;
+    gameSelect.disabled = true;
     generateProcessBlock.style.display = 'flex';
-    const endGenerateTime = Date.now() + 4 * 40 * 1000;
 
-    const selectedGame = parseInt(games.value);
+    const selectedGame = parseInt(gameSelect.value);
+
+    let eventInterval =  games[selectedGame].interval;
+    let eventCount =  games[selectedGame].eventCount;
+    const endGenerateTime = Date.now() + (eventInterval * eventCount + 30) * 1000;
 
     keyBlock.style.display = 'none';
 
@@ -203,33 +212,45 @@ async function generate() {
     }
 
     generateButton.style.display = 'block';
-    games.disabled = false;
+    gameSelect.disabled = false;
     clearInterval(generateTimeInterval);
-    generateProcessBlock.style.display = 'none';
-    generateTimeValue.innerText = '👌';
+    updateGenerateTime(gameSelect)
     console.log(codes);
 }
 
 function startProcessGeneration(generationTime) {
-    function updateProcessGenerationTime() {
+    function updateProcessGenerationTime(generationTime) {
         const now = new Date();
         const distance = generationTime - now.getTime();
 
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-        generateTimeValue.innerText = '≈ ' +
-            String(hours).padStart(2, '0') + ':' +
-            String(minutes).padStart(2, '0') + ':' +
-            String(seconds).padStart(2, '0');
+        generateTimeValue.innerText = printTime(distance)
 
         if (distance < 0) {
             generateTimeValue.innerText = "⏳";
         }
     }
 
-    updateProcessGenerationTime();
+    updateProcessGenerationTime(generationTime);
+}
+
+function printTime(distance) {
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    return '≈ ' +
+        String(hours).padStart(2, '0') + ':' +
+        String(minutes).padStart(2, '0') + ':' +
+        String(seconds).padStart(2, '0');
+}
+
+function updateGenerateTime(select) {
+    const selectedGame = parseInt(select.value);
+
+    let eventInterval =  games[selectedGame].interval;
+    let eventCount =  games[selectedGame].eventCount;
+
+    generateTimeValue.innerText = printTime((eventInterval * eventCount + 30) * 1000)
 }
 
 async function copyCode(codeId, button) {
@@ -251,3 +272,5 @@ async function copyCode(codeId, button) {
 }
 
 generateButton.addEventListener('click', generate);
+
+updateGenerateTime(gameSelect)

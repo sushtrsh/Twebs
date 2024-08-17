@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hamster Generator</title>
-    <link rel="stylesheet" href="../style.css?v1.2.17">
-    <link rel="stylesheet" href="keys.css?v1.2.17">
+    <link rel="stylesheet" href="../style.css?v1.2.18">
+    <link rel="stylesheet" href="keys.css?v1.2.18">
     <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
     <link rel="icon" href="../favicon.ico" type="image/x-icon">
     <meta name="keywords" content="hamster kombat, ключ, мини-игра, тренировка, головоломка, хомяк, хамстер, август">
@@ -38,13 +38,13 @@
 <div class="container">
     <div id="game-container">
         <div class="caption">
-            <div id="caption-hamster">Hamster</div>
-            <div id="caption-puzzle">Puzzle</div>
+            <div id="caption-hamster" translate="no">Hamster</div>
+            <div id="caption-puzzle" translate="no">Puzzle</div>
         </div>
 
         <div style="display: flex">
             <label for="game-names-select" class="game-names-label">Game:</label>
-            <select id="game-names-select">
+            <select id="game-names-select" onchange="updateGenerateTime(this)">
                 <option value="1">Riding Extreme 3D</option>
                 <option value="2">Chain Cube 2048</option>
                 <option value="3">My Clone Army</option>
@@ -56,8 +56,16 @@
 
         <div id="process-generate-block" style="width: 100%; flex-direction: column;">
             <div class="generate-time-block">
-                <div id="generate-time-label">Time left:</div>
-                <div id="generate-time-value"></div>
+                <div id="generate-time-label" translate="no">Needs time:</div>
+                <div id="generate-time-value" translate="no"></div>
+                <div class="tooltip" tabindex="0">
+                    <div class="tooltip-symbol" translate="no">?</div>
+                    <div class="tooltiptext" style="margin-right: 120px; top: unset; bottom: 125%">
+                        <p>1. The specified time is calculated:</p>
+                        <p><span class="important">Number of events</span> * <span class="important">interval between events</span></p>
+                        <p>2. This is an approximate time, as errors may occur during generation. If the timer runs out just wait a little longer.</p>
+                    </div>
+                </div>
             </div>
             <progress id="process-generate" value="0" max="100">0</progress>
         </div>
@@ -96,10 +104,10 @@
                     feedback
                 </a>
             </div>
-            <div id="footer-version">v1.2.17</div>
+            <div id="footer-version">v1.2.18</div>
         </div>
     </div>
 </div>
-<script src="keys.js?v1.2.17"></script>
+<script src="keys.js?v1.2.18"></script>
 </body>
 </html>
