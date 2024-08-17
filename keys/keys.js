@@ -71,6 +71,7 @@ async function loginClient(gameNumber) {
 
     try {
         const response = await fetch(url, {
+            signal: AbortSignal.timeout(5000),
             method: 'POST',
             headers: headers,
             body: JSON.stringify(data)
@@ -103,6 +104,7 @@ async function registerEvent(token, gameNumber) {
     };
     try {
         const response = await fetch(url, {
+            signal: AbortSignal.timeout(5000),
             method: 'POST',
             headers: headers,
             body: JSON.stringify(data)
@@ -139,6 +141,7 @@ async function createCode(token, gameNumber) {
                 'Content-Type': 'application/json; charset=utf-8',
             };
             response = await fetch(url, {
+                signal: AbortSignal.timeout(5000),
                 method: 'POST',
                 headers: headers,
                 body: JSON.stringify(data)
