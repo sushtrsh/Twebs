@@ -85,6 +85,7 @@ async function loginClient(gameNumber) {
         }
         return result.clientToken;
     } catch (error) {
+        await new Promise(resolve => setTimeout(resolve, 5000));
         return loginClient(gameNumber);
     }
 }
@@ -120,6 +121,7 @@ async function registerEvent(token, gameNumber) {
         }
     } catch (error) {
         console.error('Fatal error:', error.message);
+        await new Promise(resolve => setTimeout(resolve, 5000));
         let newToken = await loginClient(gameNumber);
         return registerEvent(newToken, gameNumber);
     }
