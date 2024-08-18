@@ -79,9 +79,7 @@ async function loginClient(gameNumber) {
         const result = await response.json();
 
         if (result.error_code === 'TooManyIpRequest') {
-            console.log('Too many requests');
-            await new Promise(resolve => setTimeout(resolve, 10000));
-            return loginClient(gameNumber);
+            return 'TooManyIpRequest';
         }
         return result.clientToken;
     } catch (error) {
@@ -123,6 +121,9 @@ async function registerEvent(token, gameNumber) {
         console.error('Fatal error:', error.message);
         await new Promise(resolve => setTimeout(resolve, 5000));
         let newToken = await loginClient(gameNumber);
+        if (newToken === 'TooManyIpRequest') {
+            throw new Error('Too many requests, try again in 10 minutes')
+        }
         return registerEvent(newToken, gameNumber);
     }
 }
@@ -199,6 +200,11 @@ async function generate() {
         tasks.push((async (index) => {
             try {
                 let token = await loginClient(selectedGame);
+
+                if (token === 'TooManyIpRequest') {
+                    throw new Error('Too many requests, try again in 10 minutes')
+                }
+
                 let registerToken = await registerEvent(token, selectedGame);
                 codes[index] = await createCode(registerToken, selectedGame);
             } catch (error) {
