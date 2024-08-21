@@ -16,6 +16,8 @@
 
 🏃 Twerk Race
 
+🎨 Polysphere
+
 #### Generator operation algorithm:
 
 - Creating a random session.
