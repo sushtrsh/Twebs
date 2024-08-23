@@ -18,6 +18,10 @@
 
 🎨 Polysphere
 
+🚜 Mow and Trim
+
+🏎 Mud Racing
+
 #### Generator operation algorithm:
 
 - Creating a random session.
