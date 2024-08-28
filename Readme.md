@@ -22,6 +22,8 @@
 
 🏎 Mud Racing
 
+🍔 Cafe Dash
+
 #### Generator operation algorithm:
 
 - Creating a random session.
