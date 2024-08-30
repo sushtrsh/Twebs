@@ -24,6 +24,10 @@
 
 🍔 Cafe Dash
 
+🔫 Gangs Wars
+
+🦊 Zoopolis
+
 #### Generator operation algorithm:
 
 - Creating a random session.
