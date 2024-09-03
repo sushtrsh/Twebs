@@ -310,7 +310,20 @@ function updateGenerateTime(select) {
 
 async function copyCode(codeId, button) {
     try {
-        const content = document.getElementById(codeId).textContent;
+        let content = '';
+
+        if (codeId === 'all') {
+            let codesInput = ['keys-value-1', 'keys-value-2', 'keys-value-3', 'keys-value-4'];
+
+            codesInput.forEach(function (keyId) {
+                content += document.getElementById(keyId).textContent + '\n';
+            });
+
+            content = content.slice(0, -1); // remove last '\n'
+        } else {
+            content = document.getElementById(codeId).textContent;
+        }
+
         await navigator.clipboard.writeText(content);
 
         const toast = document.getElementById('toast');
@@ -325,6 +338,21 @@ async function copyCode(codeId, button) {
         console.error('Failed to copy content: ', error);
     }
 }
+
+async function clickCopyAll() {
+    let copyAll = document.getElementById('copy-all');
+
+    const event = new MouseEvent('click', {
+        bubbles: true,
+        cancelable: true,
+        view: window
+    });
+
+    copyAll.dispatchEvent(event);
+
+    // copyAll.click() // not working
+}
+
 
 generateButton.addEventListener('click', generate);
 
