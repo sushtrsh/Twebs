@@ -28,6 +28,10 @@
 
 🦊 Zoopolis
 
+🍭 Tile Trio
+
+🏰 Fluff Crusade
+
 #### Generator operation algorithm:
 
 - Creating a random session.
