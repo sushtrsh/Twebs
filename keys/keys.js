@@ -124,6 +124,13 @@ const games = {
         promoId: 'd2378baf-d617-417a-9d99-d685824335f0',
         interval: 30,
         eventCount: 5,
+    },
+    19 : {
+        name: 'Count Masters',
+        appToken: '4bdc17da-2601-449b-948e-f8c7bd376553',
+        promoId: '4bdc17da-2601-449b-948e-f8c7bd376553',
+        interval: 20,
+        eventCount: 13,
     }
 };
 
