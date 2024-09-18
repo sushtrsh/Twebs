@@ -117,6 +117,13 @@ const games = {
         promoId: '4bf4966c-4d22-439b-8ff2-dc5ebca1a600',
         interval: 10,
         eventCount: 17,
+    },
+    18 : {
+        name: 'Pin Out Master',
+        appToken: 'd2378baf-d617-417a-9d99-d685824335f0',
+        promoId: 'd2378baf-d617-417a-9d99-d685824335f0',
+        interval: 30,
+        eventCount: 5,
     }
 };
 
