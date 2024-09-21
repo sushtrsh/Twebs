@@ -75,6 +75,11 @@
         </div>
     </div>
 </div>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script>
+  Telegram.WebApp.ready(); // Menginisialisasi WebApp
+  console.log("Bot Name: ", Telegram.WebApp.initDataUnsafe.user.username);
+</script>
 <script src="script.js?v1.3.0"></script>
 </body>
 </html>
